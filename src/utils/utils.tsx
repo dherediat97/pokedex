@@ -15,3 +15,8 @@ export function formatName(name: string): string {
 export function waitFor(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
+
+export function capitalize(word: string) {
+  if (!word) return word;
+  return word[0].toUpperCase() + word.substring(1, word.length).toLowerCase();
+}
