@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { PokemonDetails } from '../types/types';
 import { fetchPokemon } from '../api/fetchPokemon';
 import LoadingScreen from '../components/LoadingScreen';
-import { waitFor } from '../utils/utils';
+import { capitalize, waitFor } from '../utils/utils';
 
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -35,13 +35,13 @@ const Pokemon = () => {
       </button>
       <div className={styles.pokemon}>
         <main className={styles.pokemonInfo}>
-          <div className={styles.pokemonTitle}>{pokemon?.name}</div>
+          <div className={styles.pokemonTitle}>{capitalize(pokemon.name)}</div>
           <div>Nr. {pokemon?.id}</div>
           <div>
             <img
               className={styles.pokemonInfoImg}
               src={pokemon?.imgSrc}
-              alt={pokemon?.name}
+              alt={capitalize(pokemon.name)}
             ></img>
           </div>
           <div>HP: {pokemon?.hp}</div>
