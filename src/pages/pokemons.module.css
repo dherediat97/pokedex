@@ -1,15 +1,16 @@
-.nav{
+.nav {
   margin-bottom: 100px;
+  margin: 24px;
 }
 
 .listItem {
-    display: flex;
-    border-bottom: 3px solid #e4e4e4;
-    padding: 10px;
-    text-decoration: none;
-    align-items: center;
+  display: flex;
+  border-bottom: 3px solid #e4e4e4;
+  padding: 10px;
+  text-decoration: none;
+  align-items: center;
 }
-  
+
 .listItem > :first-child {
   margin-right: 15px;
 }

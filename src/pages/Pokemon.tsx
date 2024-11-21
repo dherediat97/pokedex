@@ -11,19 +11,19 @@ import { capitalize, waitFor } from '../utils/utils';
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [pokemon, setPokemon] = useState<PokemonDetails>();
-  const { name } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getPokemon() {
       setIsLoading(true);
       await waitFor(100);
-      const fetchedPokemon = await fetchPokemon(name as string);
+      const fetchedPokemon = await fetchPokemon(id as string);
       setPokemon(fetchedPokemon);
       setIsLoading(false);
     }
     getPokemon();
-  }, [name]);
+  }, [id]);
 
   if (isLoading || !pokemon) return <LoadingScreen />;
 

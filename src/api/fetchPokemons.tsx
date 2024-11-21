@@ -1,10 +1,9 @@
+import { baseUrlGetPokemons, baseUrlImg } from '../app/app_urls';
 import { Pokemon } from '../types/types';
 import { formatName } from '../utils/utils';
 
 export async function fetchPokemons(): Promise<Pokemon[]> {
-  const response = await fetch(
-    'https://unpkg.com/pokemons@1.1.0/pokemons.json',
-  );
+  const response = await fetch(`${baseUrlGetPokemons}?limit=151`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch pokemons');
@@ -12,12 +11,10 @@ export async function fetchPokemons(): Promise<Pokemon[]> {
 
   const results = await response.json();
 
-  const pokemons = results.results.map((pokemon: any) => ({
+  const pokemons = results.results.map((pokemon: any, index: number) => ({
     name: pokemon.name,
-    id: pokemon.national_number,
-    imgSrc: `https://img.pokemondb.net/sprites/black-white/anim/normal/${formatName(
-      pokemon.name.toLowerCase(),
-    )}.gif`,
+    id: index++,
+    imgSrc: `${baseUrlImg}/${formatName(pokemon.name.toLowerCase())}.gif`,
   }));
 
   return pokemons.filter(

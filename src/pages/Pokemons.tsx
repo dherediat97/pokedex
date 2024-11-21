@@ -7,7 +7,7 @@ import styles from './pokemons.module.css';
 import { fetchPokemons } from '../api/fetchPokemons';
 import { Pokemon } from '../types/types';
 import LoadingScreen from '../components/LoadingScreen';
-import { waitFor } from '../utils/utils';
+import { capitalize, waitFor } from '../utils/utils';
 
 const Pokemons = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ const Pokemons = () => {
   useEffect(() => {
     const fetchAllPokemons = async () => {
       setIsLoading(true);
-      await waitFor(1000);
+      await waitFor(250);
       const allPokemons = await fetchPokemons();
       setPokemons(allPokemons);
       setIsLoading(false);
@@ -38,6 +38,7 @@ const Pokemons = () => {
       <Header query={query} setQuery={setQuery} />
       <main>
         <nav className={styles.nav}>
+          <h1>First Generation:</h1>
           {filterPokemons?.slice(0, 151).map((pokemon) => (
             <Link
               key={pokemon.id}
@@ -50,8 +51,7 @@ const Pokemons = () => {
                 alt={pokemon.name}
               />
               <div className={styles.listItemText}>
-                <span>{pokemon.name}</span>
-                <span>{pokemon.id}</span>
+                <span>{capitalize(pokemon.name)}</span>
               </div>
             </Link>
           ))}
