@@ -1,11 +1,18 @@
-import Pokedex from "../assets/pokedex.png";
-import styles from "./loadingScreen.module.css";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import LoadingAnimation from '../assets/loading.lottie';
+import styles from './loadingScreen.module.css';
 
 const LoadingScreen = () => {
-    return <div className={styles.loadingScreen}>
-        <img src={Pokedex} alt="Pokedex" className={styles.loadingScreenIcon} />
+  return (
+    <div className={styles.loadingScreen}>
+      <DotLottieReact
+        src={LoadingAnimation}
+        loop
+        autoplay
+        className={styles.loadingScreenIcon}
+      />
     </div>
-
+  );
 };
 
 export default LoadingScreen;

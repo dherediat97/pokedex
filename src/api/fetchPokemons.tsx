@@ -13,12 +13,12 @@ export async function fetchPokemons(): Promise<Pokemon[]> {
 
   const pokemons = results.results.map((pokemon: any, index: number) => ({
     name: pokemon.name,
-    id: index++,
+    id: index,
     imgSrc: `${baseUrlImg}/${formatName(pokemon.name.toLowerCase())}.gif`,
   }));
 
   return pokemons.filter(
     (pokemon: any, index: number) =>
-      pokemons.findIndex((other: any) => other.id === pokemon.id) === index,
+      pokemons.findIndex((other: any) => other.id === pokemon.id) === index
   );
 }
