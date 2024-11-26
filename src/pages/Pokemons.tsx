@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
 
-import styles from './pokemons.module.css';
 import { fetchPokemons } from '../api/fetchPokemons';
-import { Pokemon } from '../types/types';
 import LoadingScreen from '../components/LoadingScreen';
 import { capitalize, waitFor } from '../utils/utils';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  ListSubheader,
+  Paper,
+  Typography,
+} from '@mui/material';
+import { Pokemon } from '../types/types';
 
 const Pokemons = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,31 +42,50 @@ const Pokemons = () => {
   });
 
   return (
-    <>
+    <Box>
       <Header query={query} setQuery={setQuery} />
-      <main>
-        <nav className={styles.nav}>
-          <h1>First Generation:</h1>
-          {filterPokemons?.slice(0, 151).map((pokemon) => (
-            <Link
-              key={pokemon.id}
-              className={styles.listItem}
-              to={`/pokemons/${pokemon.name.toLowerCase()}`}
-            >
-              <img
-                className={styles.listItemIcon}
-                src={pokemon.imgSrc}
-                alt={pokemon.name}
-              />
-              <div className={styles.listItemText}>
-                <span>{capitalize(pokemon.name)}</span>
-              </div>
-            </Link>
-          ))}
-        </nav>
-      </main>
-      <Footer />
-    </>
+      {/* First Generation */}
+      <Grid
+        columnGap={2}
+        rowSpacing={4}
+        columnSpacing={2}
+        container
+        paddingBottom={4}
+      >
+        {filterPokemons?.slice(0, 151).map((pokemon, index) => (
+          <Grid item key={index}>
+            <Paper>
+              <Card
+                elevation={10}
+                sx={{
+                  width: 170,
+                }}
+              >
+                <CardActionArea
+                  LinkComponent={'a'}
+                  href={`pokemons/${pokemon.name}`}
+                >
+                  <CardMedia
+                    component="img"
+                    alt={pokemon.name}
+                    sx={{
+                      height: 81,
+                      objectFit: 'scale-down',
+                    }}
+                    image={pokemon.imgSrc}
+                  ></CardMedia>
+                  <CardContent sx={{ textAlign: 'center' }}>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {capitalize(pokemon.name)}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
