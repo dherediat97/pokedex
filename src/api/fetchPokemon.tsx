@@ -1,11 +1,11 @@
 import { baseUrlGetPokemons } from '../app/app_urls';
 import { PokemonDetails } from '../types/types';
 
-export async function fetchPokemon(id: string): Promise<PokemonDetails> {
-  const response = await fetch(`${baseUrlGetPokemons}${id}`);
+export async function fetchPokemon(name: string): Promise<PokemonDetails> {
+  const response = await fetch(`${baseUrlGetPokemons}${name}`);
 
   if (!response.ok) {
-    throw new Error(`Error fetching ${id}`);
+    throw new Error(`Error fetching ${name}`);
   }
 
   const result = await response.json();
