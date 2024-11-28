@@ -11,6 +11,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Grid2,
   ListSubheader,
   Paper,
   Typography,
@@ -45,46 +46,54 @@ const Pokemons = () => {
     <Box>
       <Header query={query} setQuery={setQuery} />
       {/* First Generation */}
-      <Grid
-        columnGap={2}
+      <Grid2
+        columnGap={4}
         rowSpacing={4}
-        columnSpacing={2}
+        columnSpacing={4}
         container
-        paddingBottom={4}
+        padding={4}
       >
-        {filterPokemons?.slice(0, 151).map((pokemon, index) => (
-          <Grid item key={index}>
-            <Paper>
+        {filterPokemons.map((pokemon, index) => (
+          <Box key={index} sx={{ borderRadius: 16, overflow: 'hidden' }}>
+            <CardActionArea
+              LinkComponent={'a'}
+              href={`pokemons/${pokemon.name}`}
+            >
               <Card
                 elevation={10}
                 sx={{
                   width: 170,
                 }}
               >
-                <CardActionArea
-                  LinkComponent={'a'}
-                  href={`pokemons/${pokemon.name}`}
+                <Typography
+                  sx={{ textAlign: 'right', paddingRight: 4, paddingTop: 2 }}
+                  gutterBottom
+                  variant="h5"
+                  component="div"
                 >
-                  <CardMedia
-                    component="img"
-                    alt={pokemon.name}
-                    sx={{
-                      height: 81,
-                      objectFit: 'scale-down',
-                    }}
-                    image={pokemon.imgSrc}
-                  ></CardMedia>
-                  <CardContent sx={{ textAlign: 'center' }}>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {capitalize(pokemon.name)}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
+                  #{pokemon.id}
+                </Typography>
+                <CardMedia
+                  component="img"
+                  alt={pokemon.name}
+                  sx={{
+                    margin: '0 auto',
+                    height: 100,
+                    width: '100%',
+                    objectFit: 'scale-down',
+                  }}
+                  image={pokemon.imgSrc}
+                ></CardMedia>
+                <CardContent sx={{ textAlign: 'center' }}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {capitalize(pokemon.name)}
+                  </Typography>
+                </CardContent>
               </Card>
-            </Paper>
-          </Grid>
+            </CardActionArea>
+          </Box>
         ))}
-      </Grid>
+      </Grid2>
     </Box>
   );
 };
