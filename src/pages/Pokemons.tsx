@@ -17,6 +17,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Pokemon } from '../types/types';
+import theme from '../theme';
 
 const Pokemons = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,28 +64,29 @@ const Pokemons = () => {
                 elevation={10}
                 sx={{
                   width: 170,
+                  paddingTop: 4,
                 }}
               >
-                <Typography
-                  sx={{ textAlign: 'right', paddingRight: 4, paddingTop: 2 }}
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                >
-                  #{pokemon.id}
-                </Typography>
                 <CardMedia
                   component="img"
                   alt={pokemon.name}
                   sx={{
                     margin: '0 auto',
                     height: 100,
-                    width: '100%',
+                    paddingBottom: 4,
                     objectFit: 'scale-down',
                   }}
                   image={pokemon.imgSrc}
                 ></CardMedia>
-                <CardContent sx={{ textAlign: 'center' }}>
+                <CardContent
+                  sx={{
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                    background:
+                      'linear-gradient(to right bottom, #20b49c, #106a59)',
+                    color: '#fff',
+                  }}
+                >
                   <Typography gutterBottom variant="h5" component="div">
                     {capitalize(pokemon.name)}
                   </Typography>

@@ -9,6 +9,7 @@
     "@lottiefiles/dotlottie-react": "^0.10.0",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/x-charts": "^7.22.3",
     "@types/node": "^22.9.1",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",

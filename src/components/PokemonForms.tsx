@@ -1,5 +1,6 @@
 import {
   Card,
+  CardActionArea,
   CardHeader,
   CardMedia,
   Grid,
@@ -23,25 +24,32 @@ const PokemonForms = ({ sprites, pokemonName }: PokemonFormsProps) => {
       >
         Forms:
       </Typography>
-      <Grid2 container spacing={2} flexGrow={9}>
+      <Grid2 container spacing={2}>
         <Grid2 size={4}>
           {sprites.front_female ? (
             <Card
               sx={{
-                maxWidth: 200,
+                width: 340,
                 margin: '0 auto',
               }}
             >
-              <CardHeader title={'Female form:'} />
-              <CardMedia
-                component="img"
-                sx={{
-                  margin: '0 auto',
-                  width: '100%',
-                }}
-                image={sprites.front_female}
-                alt={pokemonName}
-              />
+              <CardActionArea>
+                <CardHeader
+                  title={'Female form'}
+                  sx={{ textAlign: 'center' }}
+                />
+                <CardMedia
+                  component="img"
+                  sx={{
+                    height: 100,
+                    marginTop: 4,
+                    marginBottom: 4,
+                    objectFit: 'scale-down',
+                  }}
+                  image={sprites.front_female}
+                  alt={pokemonName}
+                />
+              </CardActionArea>
             </Card>
           ) : (
             <div></div>
@@ -52,21 +60,24 @@ const PokemonForms = ({ sprites, pokemonName }: PokemonFormsProps) => {
           {sprites.front_shiny ? (
             <Card
               sx={{
-                maxWidth: 200,
+                width: 340,
                 margin: '0 auto',
               }}
             >
-              <CardHeader title={'Shiny form:'} />
-              <CardMedia
-                component="img"
-                sx={{
-                  margin: '0 auto',
-                  objectFit: 'cover',
-                  width: '100%',
-                }}
-                image={sprites.front_shiny}
-                alt={pokemonName}
-              />
+              <CardActionArea>
+                <CardHeader title={'Shiny form'} sx={{ textAlign: 'center' }} />
+                <CardMedia
+                  component="img"
+                  sx={{
+                    height: 100,
+                    marginTop: 4,
+                    marginBottom: 4,
+                    objectFit: 'contain',
+                  }}
+                  image={sprites.front_shiny}
+                  alt={pokemonName}
+                />
+              </CardActionArea>
             </Card>
           ) : (
             <div></div>
@@ -76,21 +87,27 @@ const PokemonForms = ({ sprites, pokemonName }: PokemonFormsProps) => {
           {sprites.front_shiny_female ? (
             <Card
               sx={{
-                maxWidth: 200,
+                width: 340,
                 margin: '0 auto',
               }}
             >
-              <CardHeader title={'Female Shiny form:'} />
-              <CardMedia
-                component="img"
-                sx={{
-                  margin: '0 auto',
-                  objectFit: 'cover',
-                  width: '100%',
-                }}
-                image={sprites.front_shiny_female}
-                alt={pokemonName}
-              />
+              <CardActionArea>
+                <CardHeader
+                  title={'Female Shiny form'}
+                  sx={{ textAlign: 'center' }}
+                />
+                <CardMedia
+                  component="img"
+                  sx={{
+                    height: 100,
+                    marginTop: 4,
+                    marginBottom: 4,
+                    objectFit: 'scale-down',
+                  }}
+                  image={sprites.front_shiny_female}
+                  alt={pokemonName}
+                />
+              </CardActionArea>
             </Card>
           ) : (
             <div></div>

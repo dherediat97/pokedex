@@ -6,7 +6,14 @@ import { PokemonDetails } from '../types/types';
 import { fetchPokemon } from '../api/fetchPokemon';
 import LoadingScreen from '../components/LoadingScreen';
 import { capitalize, waitFor } from '../utils/utils';
-import { Box, Card, CardHeader, CardMedia, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardHeader,
+  CardMedia,
+  Typography,
+} from '@mui/material';
 import PokemonForms from '../components/PokemonForms';
 import PokemonStats from '../components/PokemonStats';
 
@@ -47,24 +54,29 @@ const Pokemon = () => {
       >
         {capitalize(pokemon.name)}
       </Typography>
+
       <Card
         sx={{
-          maxWidth: 200,
+          width: 340,
           margin: '0 auto',
         }}
       >
-        <CardHeader title={'Default form:'} />
-        <CardMedia
-          component="img"
-          sx={{
-            margin: '0 auto',
-            objectFit: 'cover',
-            width: '100%',
-          }}
-          image={pokemon.defaultFrontImg}
-          alt={pokemon.name}
-        />
+        <CardActionArea>
+          <CardHeader title={'Default form:'} sx={{ textAlign: 'center' }} />
+          <CardMedia
+            component="img"
+            sx={{
+              height: 100,
+              marginTop: 4,
+              marginBottom: 4,
+              objectFit: 'scale-down',
+            }}
+            image={pokemon.defaultFrontImg}
+            alt={pokemon.name}
+          />
+        </CardActionArea>
       </Card>
+
       <PokemonForms
         sprites={pokemon.sprites}
         pokemonName={capitalize(pokemon.name)}
