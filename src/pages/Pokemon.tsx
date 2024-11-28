@@ -6,7 +6,9 @@ import { PokemonDetails } from '../types/types';
 import { fetchPokemon } from '../api/fetchPokemon';
 import LoadingScreen from '../components/LoadingScreen';
 import { capitalize, waitFor } from '../utils/utils';
-import { Container, Icon, IconButton } from '@mui/material';
+import { Box, Card, CardHeader, CardMedia, Typography } from '@mui/material';
+import PokemonForms from '../components/PokemonForms';
+import PokemonStats from '../components/PokemonStats';
 
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,29 +30,48 @@ const Pokemon = () => {
   if (isLoading || !pokemon) return <LoadingScreen />;
 
   return (
-    <Container>
+    <Box
+      sx={{
+        margin: 4,
+      }}
+    >
       <button className={styles.pokeballButton} onClick={() => navigate(-1)}>
         <img className={styles.pokeballImg} src={PokeballImg} alt="Pokeball" />
         Go Back
       </button>
-      <div className={styles.pokemon}>
-        <main className={styles.pokemonInfo}>
-          <div className={styles.pokemonTitle}>{capitalize(pokemon.name)}</div>
-          <div>Nr. {pokemon?.id}</div>
-          <div>
-            <img
-              className={styles.pokemonInfoImg}
-              src={pokemon?.imgSrc}
-              alt={capitalize(pokemon.name)}
-            ></img>
-          </div>
-          <div>HP: {pokemon?.hp}</div>
-          <div>Attack: {pokemon?.attack}</div>
-          <div>Defense: {pokemon?.defense}</div>
-          {/* <div>All Evolutions:</div> */}
-        </main>
-      </div>
-    </Container>
+      <Typography
+        variant="h3"
+        component="h3"
+        sx={{ paddingTop: 8, paddingBottom: 4 }}
+        textAlign={'center'}
+      >
+        {capitalize(pokemon.name)}
+      </Typography>
+      <Card
+        sx={{
+          maxWidth: 200,
+          margin: '0 auto',
+        }}
+      >
+        <CardHeader title={'Default form:'} />
+        <CardMedia
+          component="img"
+          sx={{
+            margin: '0 auto',
+            objectFit: 'cover',
+            width: '100%',
+          }}
+          image={pokemon.defaultFrontImg}
+          alt={pokemon.name}
+        />
+      </Card>
+      <PokemonForms
+        sprites={pokemon.sprites}
+        pokemonName={capitalize(pokemon.name)}
+      ></PokemonForms>
+      <PokemonStats stats={pokemon.stats}></PokemonStats>
+      {/* <div>All Evolutions:</div> */}
+    </Box>
   );
 };
 

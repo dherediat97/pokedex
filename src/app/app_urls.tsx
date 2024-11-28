@@ -1,3 +1,2 @@
-export const baseUrlGetPokemons = 'https://pokeapi.co/api/v2/pokemon/';
-export const baseUrlImg =
-  'https://img.pokemondb.net/sprites/black-white/anim/normal';
+export const baseUrlGetPokemons = 'https://pokeapi.co/api/v2/';
+export const baseUrlImg = 'https://img.pokemondb.net/artwork/vector';

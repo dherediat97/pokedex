@@ -6,13 +6,12 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@lottiefiles/dotlottie-react": "^0.10.0",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "@fontsource/roboto": "^5.1.0",
-    "@lottiefiles/dotlottie-react": "^0.10.0",
     "@types/node": "^22.9.1",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
     "react-router-dom": "^7.0.1"
   },
   "scripts": {
@@ -44,16 +43,16 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
-    "typescript": "latest",
-    "vite": "latest",
-    "@eslint/js": "^9.13.0",
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
-    "typescript-eslint": "^8.11.0"
+    "typescript": "latest",
+    "typescript-eslint": "^8.11.0",
+    "vite": "latest"
   }
 }
