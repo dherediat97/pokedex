@@ -9,12 +9,28 @@ import {
   Typography,
 } from '@mui/material';
 import { Stats } from '../types/types';
+import { BarChart } from '@mui/x-charts/BarChart';
 
 type StatsProp = {
   stats: Stats[];
 };
 
+const chartSetting = {
+  xAxis: [
+    {
+      label: 'stat',
+    },
+  ],
+  width: 500,
+  height: 400,
+};
+
+export function valueFormatter(value: number | null) {
+  return `${value}`;
+}
+
 const PokemonStats = ({ stats }: StatsProp) => {
+  console.log(stats);
   return (
     <>
       <Typography
@@ -24,6 +40,16 @@ const PokemonStats = ({ stats }: StatsProp) => {
       >
         Base Statitics:
       </Typography>
+
+      {/* <BarChart
+        dataset={stats}
+        yAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+        series={[
+          { dataKey: 'base_stat', label: 'Base statitics', valueFormatter },
+        ]}
+        layout="horizontal"
+        {...chartSetting}
+      /> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
