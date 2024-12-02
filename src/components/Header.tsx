@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Container, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 
 type HeaderProps = {
   query: string;

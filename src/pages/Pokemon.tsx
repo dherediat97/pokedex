@@ -41,38 +41,29 @@ const Pokemon = () => {
   if (isLoading || !pokemon) return <LoadingScreen />;
 
   return (
-    <Box
-      sx={{
-        margin: 4,
-      }}
-    >
+    <Box sx={{ padding: 8 }}>
       <button className={styles.pokeballButton} onClick={() => navigate(-1)}>
         <img className={styles.pokeballImg} src={PokeballImg} alt="Pokeball" />
         Go Back
       </button>
 
-      {/* <PokemonTitle pokemonTitles={pokemonSpecie?.names} /> */}
-
-      <PokemonForm
-        formName="Default Form"
-        imgSrc={`${baseUrlImg}/${pokemon.name}.png`}
-        pokemonName={pokemon.name}
-      />
+      <PokemonTitle pokemonTitles={pokemonSpecie?.names!} />
 
       <PokemonForms
         sprites={pokemon.sprites}
         pokemonName={capitalize(pokemon.name)}
       />
+
       <PokemonStats stats={pokemon.stats} />
-      <Typography
-        variant="h3"
-        component="h3"
+      {/* <Typography
+        variant="h5"
+        component="h5"
         sx={{ paddingTop: 8, paddingBottom: 4 }}
         textAlign={'center'}
       >
         {capitalize(pokemon.name)} Evolutions
       </Typography>
-      <PokemonEvolutions />
+      <PokemonEvolutions /> */}
     </Box>
   );
 };
