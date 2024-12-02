@@ -11,14 +11,22 @@ const PokemonForms = ({ sprites, pokemonName }: PokemonFormsProps) => {
   return (
     <>
       <Typography
-        sx={{ paddingTop: 8, paddingBottom: 4 }}
+        sx={{ paddingTop: 4, paddingBottom: 4 }}
         variant="h5"
         component="h5"
       >
         Forms:
       </Typography>
-      <Grid2 container spacing={2}>
-        <Grid2 size={4}>
+      <Grid2 container spacing={12}>
+        <Grid2>
+          <PokemonForm
+            formName="Default Form"
+            pokemonName={pokemonName}
+            imgSrc={sprites.front_default}
+          />
+        </Grid2>
+
+        <Grid2>
           <PokemonForm
             formName="Female Form"
             pokemonName={pokemonName}
@@ -26,14 +34,14 @@ const PokemonForms = ({ sprites, pokemonName }: PokemonFormsProps) => {
           />
         </Grid2>
 
-        <Grid2 size={4}>
+        <Grid2>
           <PokemonForm
             formName="Shiny Form"
             pokemonName={pokemonName}
             imgSrc={sprites.front_shiny}
           />
         </Grid2>
-        <Grid2 size={4}>
+        <Grid2>
           <PokemonForm
             formName="Female Shiny Form"
             pokemonName={pokemonName}

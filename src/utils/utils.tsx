@@ -1,3 +1,5 @@
+import { Pokemon } from '../types/types';
+
 export function formatName(name: string): string {
   if (name.includes('♀')) {
     return name.replace('♀', '-f');

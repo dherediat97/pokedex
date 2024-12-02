@@ -3,18 +3,11 @@ import Header from '../components/Header';
 
 import { fetchPokemons } from '../api/fetchPokemons';
 import LoadingScreen from '../components/LoadingScreen';
-import { capitalize, waitFor } from '../utils/utils';
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid2,
-  Typography,
-} from '@mui/material';
-import { Pokemon, PokemonResponse } from '../types/types';
+import { waitFor } from '../utils/utils';
+import { Box, Grid2 } from '@mui/material';
+import { Pokemon } from '../types/types';
 import generations from '../app/app_constants';
+import PokemonItem from '../components/PokemomItem';
 
 const Pokemons = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +29,6 @@ const Pokemons = () => {
   };
 
   const fetchPokemonsPaginate = async () => {
-    console.log(pageIndex);
     const pokemonResponse = await fetchPokemons(
       generations.at(pageIndex)?.lastPokemon!
     );
@@ -73,54 +65,12 @@ const Pokemons = () => {
   });
 
   return (
-    <Box>
+    <Box sx={{ padding: 8 }}>
       <Header query={query} setQuery={setQuery} />
-      <Grid2
-        columnGap={4}
-        rowSpacing={4}
-        columnSpacing={4}
-        container
-        padding={4}
-      >
+      <Grid2 rowSpacing={4} columnSpacing={4} container>
         {filterPokemons.map((pokemon, index) => (
           <Box key={index} sx={{ borderRadius: 16, overflow: 'hidden' }}>
-            <CardActionArea
-              LinkComponent={'a'}
-              href={`pokemons/${pokemon.name}`}
-            >
-              <Card
-                elevation={10}
-                sx={{
-                  width: 170,
-                  paddingTop: 4,
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  alt={pokemon.name}
-                  sx={{
-                    margin: '0 auto',
-                    height: 100,
-                    paddingBottom: 4,
-                    objectFit: 'scale-down',
-                  }}
-                  image={pokemon.imgSrc}
-                ></CardMedia>
-                <CardContent
-                  sx={{
-                    textAlign: 'center',
-                    fontWeight: 'bold',
-                    background:
-                      'linear-gradient(to right bottom, #20b49c, #106a59)',
-                    color: '#fff',
-                  }}
-                >
-                  <Typography gutterBottom variant="h5" component="div">
-                    {capitalize(pokemon.name)}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
+            <PokemonItem pokemon={pokemon} />
           </Box>
         ))}
       </Grid2>

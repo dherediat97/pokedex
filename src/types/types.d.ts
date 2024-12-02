@@ -2,6 +2,7 @@ export type Pokemon = {
   name: string;
   id: number;
   imgSrc: string;
+  secondaryImgSrc: string;
 };
 
 export type PokemonResponse = {
@@ -14,13 +15,13 @@ export type PokemonResponse = {
 export type PokemonDetails = {
   name: string;
   id: string;
-  defaultFrontImg: string;
-  defaultBackImg: string;
   sprites: Sprites;
   stats: Stats[];
 };
 
 export type Sprites = {
+  front_default: string;
+  back_default: string;
   back_female: string;
   back_shiny: string;
   back_shiny_female: string;

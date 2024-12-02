@@ -6,14 +6,11 @@ type PokemonFormProps = {
   formName: string;
 };
 
-const handleImageError = (e: any) => {
-  e.target.onerror = null;
-  e.target.src =
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png';
-};
-
 const PokemonForm = ({ imgSrc, pokemonName, formName }: PokemonFormProps) => {
-  //   console.log(imgSrc);
+  if (imgSrc == null)
+    imgSrc =
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png';
+
   return (
     <>
       <Card
@@ -26,7 +23,6 @@ const PokemonForm = ({ imgSrc, pokemonName, formName }: PokemonFormProps) => {
           <CardHeader title={formName} sx={{ textAlign: 'center' }} />
           <CardMedia
             component="img"
-            onError={handleImageError}
             sx={{
               height: 100,
               marginTop: 4,
