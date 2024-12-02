@@ -1,9 +1,11 @@
 import { baseUrlGetPokemons, baseUrlImg } from '../app/app_urls';
-import { Pokemon } from '../types/types';
+import { PokemonEvolution } from '../types/types';
 import { formatName } from '../utils/utils';
 
-export async function fetchPokemons(): Promise<Pokemon[]> {
-  const response = await fetch(`${baseUrlGetPokemons}/pokemon?limit=151`);
+export async function fetchPokemonEvolution(
+  id: string
+): Promise<PokemonEvolution[]> {
+  const response = await fetch(`${baseUrlGetPokemons}/evolution-chain/${id}`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch pokemons evolutions');

@@ -10,43 +10,71 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Grid,
   Grid2,
-  ListSubheader,
-  Paper,
   Typography,
 } from '@mui/material';
-import { Pokemon } from '../types/types';
-import theme from '../theme';
+import { Pokemon, PokemonResponse } from '../types/types';
+import generations from '../app/app_constants';
 
 const Pokemons = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  var [pageIndex, setPageIndex] = useState(0);
+
+  const fetchInitialLoadPokemons = async () => {
+    setIsLoading(true);
+    await waitFor(750);
+
+    const pokemonResponse = await fetchPokemons(
+      generations.at(pageIndex)?.lastPokemon!
+    );
+    setPageIndex(1);
+
+    setPokemons(pokemonResponse.results);
+    setIsLoading(false);
+  };
+
+  const fetchPokemonsPaginate = async () => {
+    console.log(pageIndex);
+    const pokemonResponse = await fetchPokemons(
+      generations.at(pageIndex)?.lastPokemon!
+    );
+    setPageIndex(pageIndex++);
+    setPokemons([...pokemons, ...pokemonResponse.results]);
+  };
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      isLoading
+    ) {
+      return;
+    }
+    if (generations.at(pageIndex)?.lastPokemon!) fetchPokemonsPaginate();
+  };
 
   useEffect(() => {
-    const fetchAllPokemons = async () => {
-      setIsLoading(true);
-      await waitFor(1000);
-      const allPokemons = await fetchPokemons();
-      setPokemons(allPokemons);
-      setIsLoading(false);
-    };
-    fetchAllPokemons();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLoading]);
+
+  useEffect(() => {
+    fetchInitialLoadPokemons();
   }, []);
 
   if (isLoading || !pokemons) {
     return <LoadingScreen />;
   }
 
-  const filterPokemons = pokemons?.slice(0, 151).filter((pokemon) => {
+  const filterPokemons = pokemons.filter((pokemon) => {
     return pokemon.name.toLowerCase().match(query.toLowerCase());
   });
 
   return (
     <Box>
       <Header query={query} setQuery={setQuery} />
-      {/* First Generation */}
       <Grid2
         columnGap={4}
         rowSpacing={4}
