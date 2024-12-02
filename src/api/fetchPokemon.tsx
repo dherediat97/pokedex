@@ -1,6 +1,5 @@
-import { baseUrlGetPokemons, baseUrlImg } from '../app/app_urls';
-import { PokemonDetails } from '../types/types';
-import { formatName } from '../utils/utils';
+import { baseUrlGetPokemons } from '../app/app_urls';
+import { PokemonDetails, PokemonSpecie } from '../types/types';
 
 export async function fetchPokemon(name: string): Promise<PokemonDetails> {
   const response = await fetch(`${baseUrlGetPokemons}/pokemon/${name}`);
@@ -9,21 +8,19 @@ export async function fetchPokemon(name: string): Promise<PokemonDetails> {
     throw new Error(`Error fetching ${name}`);
   }
 
-  const result = await response.json();
-  console.log(result);
-
-  const pokemon = {
-    name: result.name,
-    id: result.id,
-    sprites: result.sprites,
-    defaultFrontImg: `${baseUrlImg}/${formatName(
-      result.name.toLowerCase()
-    )}.png`,
-    defaultBackImg: `${baseUrlImg}/${formatName(
-      result.name.toLowerCase()
-    )}.png`,
-    stats: result.stats,
-  };
+  const pokemon = (await response.json()) as PokemonDetails;
 
   return pokemon;
+}
+
+export async function fetchPokemonSpecie(name: string): Promise<PokemonSpecie> {
+  const response = await fetch(`${baseUrlGetPokemons}/pokemon-species/${name}`);
+
+  if (!response.ok) {
+    throw new Error(`Error fetching specie ${name}`);
+  }
+
+  const pokemonSpecie = (await response.json()) as PokemonSpecie;
+
+  return pokemonSpecie;
 }
