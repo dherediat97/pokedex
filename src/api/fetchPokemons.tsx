@@ -17,7 +17,7 @@ export async function fetchPokemons(limit: number): Promise<PokemonResponse> {
   const pokemons: Pokemon[] = responsePokemons.results.map(
     (pokemon: any, index: number) => ({
       name: pokemon.name,
-      id: index + 1,
+      id: index,
       secondaryImgSrc: `${secondaryBaseUrlImg}/${formatName(
         pokemon.name.toLowerCase()
       )}.png`,

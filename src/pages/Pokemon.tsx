@@ -2,41 +2,54 @@ import { useNavigate, useParams } from 'react-router-dom';
 import PokeballImg from '../assets/pokeball.svg';
 import styles from './pokemon.module.css';
 import { useEffect, useState } from 'react';
-import { PokemonDetails, PokemonSpecie } from '../types/types';
+import {
+  PokemonDetails,
+  PokemonEvolution,
+  PokemonSpecie,
+} from '../types/types';
 import { fetchPokemon, fetchPokemonSpecie } from '../api/fetchPokemon';
 import LoadingScreen from '../components/LoadingScreen';
 import { capitalize, waitFor } from '../utils/utils';
 import { Box, Typography } from '@mui/material';
 import PokemonForms from '../components/PokemonForms';
 import PokemonStats from '../components/PokemonStats';
-import PokemonForm from '../components/PokemonForm';
-import { baseUrlImg } from '../app/app_urls';
 import PokemonEvolutions from '../components/PokemonEvolution';
 import PokemonTitle from '../components/PokemonTitle';
+import { fetchPokemonEvolution } from '../api/fetchPokemonEvolutions';
 
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [pokemon, setPokemon] = useState<PokemonDetails>();
   const [pokemonSpecie, setPokemonSpecie] = useState<PokemonSpecie>();
+  const [pokemonEvolution, setPokemonEvolution] = useState<PokemonEvolution>();
   const { name } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getPokemon() {
       setIsLoading(true);
-      await waitFor(100);
       const fetchedPokemon = await fetchPokemon(name as string);
       setPokemon(fetchedPokemon);
     }
-
     async function getPokemonSpecie() {
-      const fetchedPokemon = await fetchPokemonSpecie(name as string);
-      setPokemonSpecie(fetchedPokemon);
-      setIsLoading(false);
+      const fetchedPokemonSpecie = await fetchPokemonSpecie(name as string);
+      setPokemonSpecie(fetchedPokemonSpecie);
     }
     getPokemon();
     getPokemonSpecie();
   }, [name]);
+
+  useEffect(() => {
+    async function getPokemonEvolution() {
+      console.log(pokemonSpecie);
+      const fetchEvolution = await fetchPokemonEvolution(
+        pokemonSpecie?.evolution_chain.url
+      );
+      setPokemonEvolution(fetchEvolution);
+      setIsLoading(false);
+    }
+    if (pokemonSpecie?.evolution_chain != null) getPokemonEvolution();
+  }, [pokemon]);
 
   if (isLoading || !pokemon) return <LoadingScreen />;
 
@@ -55,15 +68,15 @@ const Pokemon = () => {
       />
 
       <PokemonStats stats={pokemon.stats} />
-      {/* <Typography
-        variant="h5"
-        component="h5"
+      <Typography
+        variant="h4"
+        component="h4"
         sx={{ paddingTop: 8, paddingBottom: 4 }}
         textAlign={'center'}
       >
-        {capitalize(pokemon.name)} Evolutions
+        Evolutions
       </Typography>
-      <PokemonEvolutions /> */}
+      <PokemonEvolutions evolutions={pokemonEvolution!} />
     </Box>
   );
 };

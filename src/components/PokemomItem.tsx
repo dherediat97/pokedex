@@ -31,8 +31,9 @@ const PokemonItem = ({ pokemon }: PokemonItemProps) => {
             paddingBottom: 4,
             objectFit: 'scale-down',
           }}
-          onError={(element) => {
-            element.currentTarget.src = pokemon.secondaryImgSrc;
+          onError={(e: any) => {
+            e.target.src = pokemon.secondaryImgSrc;
+            e.target.onerror = null;
           }}
           image={pokemon.imgSrc}
         ></CardMedia>
@@ -44,7 +45,12 @@ const PokemonItem = ({ pokemon }: PokemonItemProps) => {
             color: '#fff',
           }}
         >
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h5"
+            sx={{ fontSize: '16px' }}
+          >
             {capitalize(pokemon.name)}
           </Typography>
         </CardContent>

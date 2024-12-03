@@ -35,7 +35,9 @@ export type Stats = {
 };
 
 export type PokemonEvolution = {
-  chain: any;
+  id: number;
+  baby_trigger_item: number;
+  chain: EvolutionChain;
 };
 
 export type PokemonSpecie = {
@@ -43,7 +45,7 @@ export type PokemonSpecie = {
   capture_rate: number;
   color: Color;
   egg_groups: Color[];
-  evolution_chain: EvolutionChain;
+  evolution_chain: EvolutionChainRequest;
   evolves_from_species: Color;
   flavor_text_entries: FlavorTextEntry[];
   form_descriptions: any[];
@@ -73,7 +75,40 @@ export type Color = {
   url: string;
 };
 
+export type EvolutionChainUrl = {
+  url: string;
+};
+
 export type EvolutionChain = {
+  is_baby: boolean;
+  species: Species;
+  evolution_details: EvolutionDetail[] | null;
+  evolves_to: EvolutionChain[];
+};
+
+export type EvolutionDetail = {
+  item: null;
+  trigger: Species;
+  gender: null;
+  held_item: null;
+  known_move: null;
+  known_move_type: null;
+  location: null;
+  min_level: number;
+  min_happiness: null;
+  min_beauty: null;
+  min_affection: null;
+  needs_overworld_rain: boolean;
+  party_species: null;
+  party_type: null;
+  relative_physical_stats: null;
+  time_of_day: string;
+  trade_species: null;
+  turn_upside_down: boolean;
+};
+
+export type Species = {
+  name: string;
   url: string;
 };
 

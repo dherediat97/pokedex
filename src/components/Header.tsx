@@ -8,10 +8,10 @@ type HeaderProps = {
 const Header = ({ query, setQuery }: HeaderProps) => {
   return (
     <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="10vh"
+      sx={{
+        margin: '0 auto',
+        paddingBottom: 4,
+      }}
     >
       <TextField
         value={query}

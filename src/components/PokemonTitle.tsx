@@ -8,9 +8,7 @@ type PokemonTitleProps = {
 };
 
 const PokemonTitle = ({ pokemonTitles }: PokemonTitleProps) => {
-  const [translatedTitle, setTranslatedTitle] = useState(
-    pokemonTitles.find((title) => title?.language.name == 'en')?.name
-  );
+  var [translatedTitle, setTranslatedTitle] = useState('');
   var [titleIndex, setTitleIndex] = useState(0);
 
   async function changePokemonTitle() {
@@ -26,20 +24,27 @@ const PokemonTitle = ({ pokemonTitles }: PokemonTitleProps) => {
     changePokemonTitle();
   }, [titleIndex]);
 
+  useEffect(
+    () =>
+      setTranslatedTitle(
+        pokemonTitles?.find((title) => title?.language.name == 'en')?.name!
+      ),
+    []
+  );
+
   return (
     <>
       <Typography
-        variant="h2"
-        component="h2"
+        variant="h3"
+        component="h3"
         align="center"
-        alignContent={'center'}
         sx={{ paddingTop: 8, paddingBottom: 4, paddingRight: 4 }}
         textAlign={'center'}
       >
         {translatedTitle}
         <IconButton
           sx={{ marginTop: 4, marginBottom: 4, marginLeft: 4 }}
-          onClick={(event) => changePokemonTitle()}
+          onClick={() => changePokemonTitle()}
         >
           <TranslateOutlined />
         </IconButton>
