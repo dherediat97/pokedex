@@ -65,16 +65,23 @@ const Pokemons = () => {
   });
 
   return (
-    <Box sx={{ padding: 8 }}>
+    <>
       <Header query={query} setQuery={setQuery} />
-      <Grid2 rowSpacing={4} columnSpacing={4} container>
+      <Grid2
+        rowSpacing={8}
+        columnSpacing={8}
+        spacing={4}
+        marginLeft={8}
+        marginRight={8}
+        container
+      >
         {filterPokemons.map((pokemon, index) => (
           <Box key={index} sx={{ borderRadius: 16, overflow: 'hidden' }}>
             <PokemonItem pokemon={pokemon} />
           </Box>
         ))}
       </Grid2>
-    </Box>
+    </>
   );
 };
 

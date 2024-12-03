@@ -17,6 +17,7 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
+  spacing: 2,
   palette: {
     mode: 'dark',
     primary: {
