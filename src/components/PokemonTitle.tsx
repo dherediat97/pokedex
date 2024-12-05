@@ -24,19 +24,17 @@ const PokemonTitle = ({ pokemonTitles }: PokemonTitleProps) => {
     changePokemonTitle();
   }, [titleIndex]);
 
-  useEffect(
-    () =>
-      setTranslatedTitle(
-        pokemonTitles?.find((title) => title?.language.name == 'en')?.name!
-      ),
-    []
-  );
+  useEffect(() => {
+    return setTranslatedTitle(
+      pokemonTitles?.find((title) => title?.language.name == 'en')?.name!
+    );
+  }, []);
 
   return (
     <>
       <Typography
         variant="h3"
-        component="h3"
+        component="div"
         align="center"
         sx={{ paddingTop: 8, paddingBottom: 4, paddingRight: 4 }}
         textAlign={'center'}

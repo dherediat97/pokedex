@@ -61,7 +61,7 @@ export type PokemonSpecie = {
   evolution_chain: EvolutionChainRequest;
   evolves_from_species: Color;
   flavor_text_entries: FlavorTextEntry[];
-  form_descriptions: any[];
+  form_descriptions: Name[];
   forms_switchable: boolean;
   gender_rate: number;
   genera: Genus[];

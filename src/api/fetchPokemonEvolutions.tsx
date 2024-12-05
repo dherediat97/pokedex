@@ -56,16 +56,14 @@ export async function fetchPokemonEvolution(
       responseEvolutions.chain.evolves_to[0].evolves_to.length > 0
         ? `${baseUrlImg}/${secondEvolutionId}.png`
         : '',
-    pokemonName: capitalize(responseEvolutions.chain.species.name),
+    pokemonName: responseEvolutions.chain.species.name,
     firstEvolutionName:
       responseEvolutions.chain.evolves_to.length > 0
-        ? `${capitalize(responseEvolutions.chain.evolves_to[0].species.name)}`
+        ? `${responseEvolutions.chain.evolves_to[0].species.name}`
         : '',
     secondEvolutionName:
       responseEvolutions.chain.evolves_to[0].evolves_to.length > 0
-        ? `${capitalize(
-            responseEvolutions.chain.evolves_to[0].evolves_to[0].species.name
-          )}`
+        ? `${responseEvolutions.chain.evolves_to[0].evolves_to[0].species.name}`
         : '',
   };
 

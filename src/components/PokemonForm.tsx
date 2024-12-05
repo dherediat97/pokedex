@@ -23,7 +23,7 @@ const PokemonForm = ({ imgSrc, pokemonName, formName }: PokemonFormProps) => {
           color: '#fff',
         }}
       >
-        <CardActionArea>
+        <CardActionArea LinkComponent={'a'} href={`/pokemons/${pokemonName}`}>
           <CardHeader title={formName} sx={{ textAlign: 'center' }} />
           <CardMedia
             component="img"
