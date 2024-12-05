@@ -10,7 +10,7 @@ import {
 import { fetchPokemon, fetchPokemonSpecie } from '../api/fetchPokemon';
 import LoadingScreen from '../components/LoadingScreen';
 import { capitalize, waitFor } from '../utils/utils';
-import { Box, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import PokemonForms from '../components/PokemonForms';
 import PokemonStats from '../components/PokemonStats';
 import PokemonEvolutions from '../components/PokemonEvolution';
@@ -54,7 +54,7 @@ const Pokemon = () => {
   if (isLoading || !pokemon) return <LoadingScreen />;
 
   return (
-    <Box sx={{ padding: 8 }}>
+    <Container>
       <button className={styles.pokeballButton} onClick={() => navigate(-1)}>
         <img className={styles.pokeballImg} src={PokeballImg} alt="Pokeball" />
         Go Back
@@ -84,7 +84,7 @@ const Pokemon = () => {
       ) : (
         <></>
       )}
-    </Box>
+    </Container>
   );
 };
 
