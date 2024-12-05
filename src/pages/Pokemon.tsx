@@ -67,7 +67,7 @@ const Pokemon = () => {
 
       <PokemonStats stats={pokemon.stats} />
 
-      {pokemonEvolution!.firstEvolutionId ? (
+      {pokemonEvolution ? (
         <>
           <Typography
             variant="h4"
