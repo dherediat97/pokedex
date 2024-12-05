@@ -14,7 +14,10 @@ export async function fetchPokemonEvolution(
   const responseEvolutions =
     (await response.json()) as PokemonEvolutionResponse;
 
-  if (responseEvolutions.chain.evolves_to.length == 0)
+  if (
+    responseEvolutions.chain.evolves_to.length == 0 ||
+    responseEvolutions.chain.evolves_to[0].evolves_to.length == 0
+  )
     return {
       firstEvolutionId: '',
       firstEvolutionImgSrc: '',
