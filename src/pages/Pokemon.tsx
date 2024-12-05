@@ -41,14 +41,14 @@ const Pokemon = () => {
 
   useEffect(() => {
     async function getPokemonEvolution() {
-      console.log(pokemonSpecie);
       const fetchEvolution = await fetchPokemonEvolution(
         pokemonSpecie?.evolution_chain.url
       );
+
       setPokemonEvolution(fetchEvolution);
       setIsLoading(false);
     }
-    if (pokemonSpecie?.evolution_chain != null) getPokemonEvolution();
+    if (pokemonSpecie?.id != null) getPokemonEvolution();
   }, [pokemon]);
 
   if (isLoading || !pokemon) return <LoadingScreen />;
@@ -68,15 +68,22 @@ const Pokemon = () => {
       />
 
       <PokemonStats stats={pokemon.stats} />
-      <Typography
-        variant="h4"
-        component="h4"
-        sx={{ paddingTop: 8, paddingBottom: 4 }}
-        textAlign={'center'}
-      >
-        Evolutions
-      </Typography>
-      <PokemonEvolutions evolutions={pokemonEvolution!} />
+
+      {pokemonEvolution!.firstEvolutionId ? (
+        <>
+          <Typography
+            variant="h4"
+            component="h4"
+            sx={{ paddingTop: 8, paddingBottom: 4 }}
+          >
+            Evolutions
+          </Typography>
+
+          <PokemonEvolutions evolutions={pokemonEvolution!} />
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };

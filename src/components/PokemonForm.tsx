@@ -17,6 +17,10 @@ const PokemonForm = ({ imgSrc, pokemonName, formName }: PokemonFormProps) => {
         sx={{
           width: 340,
           margin: '0 auto',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          // background: 'linear-gradient(to right bottom, #20b49c, #106a59)',
+          color: '#fff',
         }}
       >
         <CardActionArea>

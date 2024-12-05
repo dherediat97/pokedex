@@ -2,7 +2,6 @@ export type Pokemon = {
   name: string;
   id: number;
   imgSrc: string;
-  secondaryImgSrc: string;
 };
 
 export type PokemonResponse = {
@@ -34,10 +33,24 @@ export type Stats = {
   base_stat: number;
 };
 
-export type PokemonEvolution = {
+export type PokemonEvolutionResponse = {
   id: number;
   baby_trigger_item: number;
   chain: EvolutionChain;
+};
+
+export type PokemonEvolution = {
+  pokemonId: string;
+  firstEvolutionId: string?;
+  secondEvolutionId: string?;
+
+  pokemonName: string;
+  firstEvolutionName: string?;
+  secondEvolutionName: string?;
+
+  pokemonImgSrc: string;
+  firstEvolutionImgSrc: string?;
+  secondEvolutionImgSrc: string?;
 };
 
 export type PokemonSpecie = {

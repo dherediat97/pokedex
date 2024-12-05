@@ -15,25 +15,15 @@ type PokemonItemProps = {
 const PokemonItem = ({ pokemon }: PokemonItemProps) => {
   return (
     <CardActionArea LinkComponent={'a'} href={`pokemons/${pokemon.name}`}>
-      <Card
-        elevation={10}
-        sx={{
-          width: 170,
-          paddingTop: 4,
-        }}
-      >
+      <Card elevation={10}>
         <CardMedia
           component="img"
           alt={pokemon.name}
           sx={{
-            margin: '0 auto',
-            height: 100,
-            paddingBottom: 4,
+            height: 120,
+            paddingTop: 12,
+            paddingBottom: 12,
             objectFit: 'scale-down',
-          }}
-          onError={(e: any) => {
-            e.target.src = pokemon.secondaryImgSrc;
-            e.target.onerror = null;
           }}
           image={pokemon.imgSrc}
         ></CardMedia>
