@@ -13,7 +13,7 @@ const PokemonEvolutions = ({ evolutions }: PokemonEvolutionsProps) => {
       <Grid2 container spacing={12}>
         <Box>
           <PokemonForm
-            formName={`${capitalize(evolutions.pokemonName)} evolution`}
+            formName={`${capitalize(evolutions.pokemonName)} Evolution`}
             pokemonName={evolutions.pokemonName}
             imgSrc={evolutions.pokemonImgSrc}
           />
@@ -24,7 +24,7 @@ const PokemonEvolutions = ({ evolutions }: PokemonEvolutionsProps) => {
             <PokemonForm
               formName={`${capitalize(
                 evolutions.firstEvolutionName!
-              )} evolution`}
+              )} Evolution`}
               pokemonName={evolutions.firstEvolutionName!}
               imgSrc={evolutions.firstEvolutionImgSrc!}
             />
@@ -38,7 +38,7 @@ const PokemonEvolutions = ({ evolutions }: PokemonEvolutionsProps) => {
             <PokemonForm
               formName={`${capitalize(
                 evolutions.secondEvolutionName!
-              )} evolution`}
+              )} Evolution`}
               pokemonName={evolutions.secondEvolutionName!}
               imgSrc={evolutions.secondEvolutionImgSrc!}
             />

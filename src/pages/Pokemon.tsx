@@ -9,8 +9,7 @@ import {
 } from '../types/types';
 import { fetchPokemon, fetchPokemonSpecie } from '../api/fetchPokemon';
 import LoadingScreen from '../components/LoadingScreen';
-import { capitalize, waitFor } from '../utils/utils';
-import { Box, Container, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import PokemonForms from '../components/PokemonForms';
 import PokemonStats from '../components/PokemonStats';
 import PokemonEvolutions from '../components/PokemonEvolution';
@@ -34,6 +33,7 @@ const Pokemon = () => {
     async function getPokemonSpecie() {
       const fetchedPokemonSpecie = await fetchPokemonSpecie(name as string);
       setPokemonSpecie(fetchedPokemonSpecie);
+      setIsLoading(false);
     }
     getPokemon();
     getPokemonSpecie();
@@ -46,7 +46,6 @@ const Pokemon = () => {
       );
 
       setPokemonEvolution(fetchEvolution);
-      setIsLoading(false);
     }
     if (pokemonSpecie?.id != null) getPokemonEvolution();
   }, [pokemon]);
@@ -62,10 +61,9 @@ const Pokemon = () => {
 
       <PokemonTitle pokemonTitles={pokemonSpecie?.names!} />
 
-      <PokemonForms
-        sprites={pokemon.sprites}
-        pokemonName={capitalize(pokemon.name)}
-      />
+      <PokemonForms sprites={pokemon.sprites} pokemonName={pokemon.name} />
+
+      {/* {pokemonSpecie?.flavor_text_entries ? <></> : <></>} */}
 
       <PokemonStats stats={pokemon.stats} />
 
@@ -73,7 +71,7 @@ const Pokemon = () => {
         <>
           <Typography
             variant="h4"
-            component="h4"
+            component="div"
             sx={{ paddingTop: 8, paddingBottom: 4 }}
           >
             Evolutions
