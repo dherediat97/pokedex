@@ -1,4 +1,7 @@
-import { PokemonEvolution } from '../types/types';
+import { baseUrlImg } from '../app/app_urls';
+import { PokemonEvolution, PokemonEvolutionResponse } from '../types/types';
+
+import { capitalize } from '../utils/utils';
 
 export async function fetchPokemonEvolution(
   evolutionChain: string
@@ -8,7 +11,47 @@ export async function fetchPokemonEvolution(
   if (!response.ok) {
     throw new Error('Failed to fetch pokemons evolutions');
   }
-  const pokemonEvolution = await response.json();
+  const responseEvolutions =
+    (await response.json()) as PokemonEvolutionResponse;
+
+  const pokemonId = responseEvolutions.chain.species.url.split('/')[6];
+  const firstEvolutionId =
+    responseEvolutions.chain.evolves_to.length > 0
+      ? responseEvolutions.chain.evolves_to[0].species.url.split('/')[6]
+      : '';
+  const secondEvolutionId =
+    responseEvolutions.chain.evolves_to.length > 0
+      ? responseEvolutions.chain.evolves_to[0].evolves_to[0].species.url.split(
+          '/'
+        )[6]
+      : '';
+
+  const pokemonEvolution = {
+    pokemonId: pokemonId,
+    firstEvolutionId: firstEvolutionId,
+    secondEvolutionId: secondEvolutionId,
+
+    pokemonImgSrc: `${baseUrlImg}/${pokemonId}.png`,
+    firstEvolutionImgSrc:
+      responseEvolutions.chain.evolves_to.length > 0
+        ? `${baseUrlImg}/${firstEvolutionId}.png`
+        : '',
+    secondEvolutionImgSrc:
+      responseEvolutions.chain.evolves_to[0].evolves_to.length > 0
+        ? `${baseUrlImg}/${secondEvolutionId}.png`
+        : '',
+    pokemonName: capitalize(responseEvolutions.chain.species.name),
+    firstEvolutionName:
+      responseEvolutions.chain.evolves_to.length > 0
+        ? `${capitalize(responseEvolutions.chain.evolves_to[0].species.name)}`
+        : '',
+    secondEvolutionName:
+      responseEvolutions.chain.evolves_to[0].evolves_to.length > 0
+        ? `${capitalize(
+            responseEvolutions.chain.evolves_to[0].evolves_to[0].species.name
+          )}`
+        : '',
+  };
 
   return pokemonEvolution;
 }

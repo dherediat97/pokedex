@@ -18,22 +18,19 @@ const PokemonItem = ({ pokemon }: PokemonItemProps) => {
       <Card
         elevation={10}
         sx={{
-          width: 170,
-          paddingTop: 4,
+          width: 180,
+          height: 200,
+          paddingBottom: 4,
         }}
       >
         <CardMedia
           component="img"
           alt={pokemon.name}
           sx={{
-            margin: '0 auto',
             height: 100,
-            paddingBottom: 4,
+            paddingTop: 12,
+            paddingBottom: 12,
             objectFit: 'scale-down',
-          }}
-          onError={(e: any) => {
-            e.target.src = pokemon.secondaryImgSrc;
-            e.target.onerror = null;
           }}
           image={pokemon.imgSrc}
         ></CardMedia>

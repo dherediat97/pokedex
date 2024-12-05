@@ -1,10 +1,5 @@
-import {
-  baseUrlGetPokemons,
-  baseUrlImg,
-  secondaryBaseUrlImg,
-} from '../app/app_urls';
+import { baseUrlGetPokemons, baseUrlImg } from '../app/app_urls';
 import { Pokemon, PokemonResponse } from '../types/types';
-import { formatName } from '../utils/utils';
 
 export async function fetchPokemons(limit: number): Promise<PokemonResponse> {
   const response = await fetch(`${baseUrlGetPokemons}/pokemon?limit=${limit}`);
@@ -17,11 +12,8 @@ export async function fetchPokemons(limit: number): Promise<PokemonResponse> {
   const pokemons: Pokemon[] = responsePokemons.results.map(
     (pokemon: any, index: number) => ({
       name: pokemon.name,
-      id: index,
-      secondaryImgSrc: `${secondaryBaseUrlImg}/${formatName(
-        pokemon.name.toLowerCase()
-      )}.png`,
-      imgSrc: `${baseUrlImg}/${formatName(pokemon.name.toLowerCase())}.png`,
+      id: index + 1,
+      imgSrc: `${baseUrlImg}/${index + 1}.png`,
     })
   );
 

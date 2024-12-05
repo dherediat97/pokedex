@@ -1,7 +1,6 @@
-import { Box, Container, Grid2 } from '@mui/material';
+import { Box, Grid2 } from '@mui/material';
 import { PokemonEvolution } from '../types/types';
 import PokemonForm from './PokemonForm';
-import { baseUrlImg } from '../app/app_urls';
 import { capitalize } from '../utils/utils';
 
 type PokemonEvolutionsProps = {
@@ -9,28 +8,44 @@ type PokemonEvolutionsProps = {
 };
 
 const PokemonEvolutions = ({ evolutions }: PokemonEvolutionsProps) => {
-  console.log(evolutions);
   return (
     <>
       <Grid2 container spacing={12}>
-        {evolutions.chain.evolves_to.map((evolution, index) => (
-          <Box key={index}>
+        <Box>
+          <PokemonForm
+            formName={`${capitalize(evolutions.pokemonName)} evolution`}
+            pokemonName={evolutions.pokemonName}
+            imgSrc={evolutions.pokemonImgSrc}
+          />
+        </Box>
+
+        {evolutions.firstEvolutionId != 0 ? (
+          <Box>
             <PokemonForm
-              formName={`${capitalize(evolution.species.name)} evolution`}
-              pokemonName={evolution.species.name}
-              imgSrc={`${baseUrlImg}/${evolution.species.name}.png`}
+              formName={`${capitalize(
+                evolutions.firstEvolutionName!
+              )} evolution`}
+              pokemonName={evolutions.firstEvolutionName!}
+              imgSrc={evolutions.firstEvolutionImgSrc!}
             />
           </Box>
-        ))}
-        {evolutions.chain.evolves_to[0].evolves_to.map((evolution, index) => (
-          <Box key={index}>
+        ) : (
+          <></>
+        )}
+
+        {evolutions.secondEvolutionId != 0 ? (
+          <Box>
             <PokemonForm
-              formName={`${capitalize(evolution.species.name)} evolution`}
-              pokemonName={evolution.species.name}
-              imgSrc={`${baseUrlImg}/${evolution.species.name}.png`}
+              formName={`${capitalize(
+                evolutions.secondEvolutionName!
+              )} evolution`}
+              pokemonName={evolutions.secondEvolutionName!}
+              imgSrc={evolutions.secondEvolutionImgSrc!}
             />
           </Box>
-        ))}
+        ) : (
+          <></>
+        )}
       </Grid2>
     </>
   );

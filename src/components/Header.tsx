@@ -8,9 +8,10 @@ type HeaderProps = {
 const Header = ({ query, setQuery }: HeaderProps) => {
   return (
     <Box
+      width={200}
       sx={{
         margin: '0 auto',
-        paddingBottom: 4,
+        marginBottom: 12,
       }}
     >
       <TextField
