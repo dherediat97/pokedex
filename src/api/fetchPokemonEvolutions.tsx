@@ -5,7 +5,7 @@ import { capitalize } from '../utils/utils';
 
 export async function fetchPokemonEvolution(
   evolutionChain: string
-): Promise<PokemonEvolution> {
+): Promise<PokemonEvolution | undefined> {
   const response = await fetch(evolutionChain);
 
   if (!response.ok) {
@@ -18,17 +18,7 @@ export async function fetchPokemonEvolution(
     responseEvolutions.chain.evolves_to.length == 0 ||
     responseEvolutions.chain.evolves_to[0].evolves_to.length == 0
   )
-    return {
-      firstEvolutionId: '',
-      firstEvolutionImgSrc: '',
-      firstEvolutionName: '',
-      pokemonId: '',
-      pokemonImgSrc: '',
-      pokemonName: '',
-      secondEvolutionId: '',
-      secondEvolutionImgSrc: '',
-      secondEvolutionName: '',
-    };
+    return undefined;
 
   const pokemonId = responseEvolutions.chain.species.url.split('/')[6];
   const firstEvolutionId =
@@ -66,6 +56,7 @@ export async function fetchPokemonEvolution(
         ? `${responseEvolutions.chain.evolves_to[0].evolves_to[0].species.name}`
         : '',
   };
+  console.log(pokemonEvolution);
 
   return pokemonEvolution;
 }
