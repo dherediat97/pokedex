@@ -41,12 +41,10 @@ const Pokemon = () => {
 
   useEffect(() => {
     async function getPokemonEvolution() {
-      console.log(pokemonSpecie);
       const fetchEvolution = await fetchPokemonEvolution(
         pokemonSpecie?.evolution_chain.url
       );
 
-      console.log(fetchEvolution);
       setPokemonEvolution(fetchEvolution);
       setIsLoading(false);
     }
