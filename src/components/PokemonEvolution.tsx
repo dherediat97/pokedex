@@ -19,7 +19,7 @@ const PokemonEvolutions = ({ evolutions }: PokemonEvolutionsProps) => {
           />
         </Box>
 
-        {evolutions.firstEvolutionId != 0 ? (
+        {evolutions.firstEvolutionId ? (
           <Box>
             <PokemonForm
               formName={`${capitalize(
@@ -33,7 +33,7 @@ const PokemonEvolutions = ({ evolutions }: PokemonEvolutionsProps) => {
           <></>
         )}
 
-        {evolutions.secondEvolutionId != 0 ? (
+        {evolutions.secondEvolutionId ? (
           <Box>
             <PokemonForm
               formName={`${capitalize(
