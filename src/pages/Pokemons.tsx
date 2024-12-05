@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import { fetchPokemons } from '../api/fetchPokemons';
 import LoadingScreen from '../components/LoadingScreen';
 import { waitFor } from '../utils/utils';
-import { Box, Grid2 } from '@mui/material';
+import { Box, Container, Grid, Grid2 } from '@mui/material';
 import { Pokemon } from '../types/types';
 import generations from '../app/app_constants';
 import PokemonItem from '../components/PokemomItem';
@@ -65,16 +65,20 @@ const Pokemons = () => {
   });
 
   return (
-    <>
+    <Container>
       <Header query={query} setQuery={setQuery} />
       <Grid2 rowSpacing={12} columnSpacing={12} container>
         {filterPokemons.map((pokemon, index) => (
-          <Box key={index} sx={{ borderRadius: 16, overflow: 'hidden' }}>
+          <Grid2
+            key={index}
+            sx={{ borderRadius: 16, overflow: 'hidden' }}
+            size={{ xs: 2, sm: 2, md: 2 }}
+          >
             <PokemonItem pokemon={pokemon} />
-          </Box>
+          </Grid2>
         ))}
       </Grid2>
-    </>
+    </Container>
   );
 };
 
