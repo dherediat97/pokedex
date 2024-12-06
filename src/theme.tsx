@@ -1,9 +1,10 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
-const theme = createTheme({
+let theme = createTheme({
   cssVariables: true,
   typography: {
+    htmlFontSize: 20,
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -32,4 +33,5 @@ const theme = createTheme({
   },
 });
 
+theme = responsiveFontSizes(theme);
 export default theme;

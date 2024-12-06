@@ -35,14 +35,7 @@ const PokemonItem = ({ pokemon }: PokemonItemProps) => {
             color: '#fff',
           }}
         >
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h5"
-            sx={{ fontSize: '16px' }}
-          >
-            {capitalize(pokemon.name)}
-          </Typography>
+          <Typography>{capitalize(pokemon.name)}</Typography>
         </CardContent>
       </Card>
     </CardActionArea>

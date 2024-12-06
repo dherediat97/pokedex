@@ -47,8 +47,8 @@ const Pokemon = () => {
 
       setPokemonEvolution(fetchEvolution);
     }
-    if (pokemonSpecie?.id != null) getPokemonEvolution();
-  }, [pokemon]);
+    if (pokemonSpecie?.evolution_chain.url) getPokemonEvolution();
+  }, [pokemonSpecie]);
 
   if (isLoading || !pokemon) return <LoadingScreen />;
 
@@ -62,8 +62,6 @@ const Pokemon = () => {
       <PokemonTitle pokemonTitles={pokemonSpecie?.names!} />
 
       <PokemonForms sprites={pokemon.sprites} pokemonName={pokemon.name} />
-
-      {/* {pokemonSpecie?.flavor_text_entries ? <></> : <></>} */}
 
       <PokemonStats stats={pokemon.stats} />
 

@@ -28,9 +28,7 @@ const PokemonForm = ({ imgSrc, pokemonName, formName }: PokemonFormProps) => {
           <CardMedia
             component="img"
             sx={{
-              height: 100,
-              marginTop: 4,
-              marginBottom: 4,
+              maxHeight: 100,
               objectFit: 'scale-down',
             }}
             image={imgSrc}
