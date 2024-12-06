@@ -44,7 +44,7 @@ const Pokemons = () => {
     ) {
       return;
     }
-    if (generations.at(pageIndex)?.lastPokemon!) fetchPokemonsPaginate();
+    if (generations.at(pageIndex)?.lastPokemon) fetchPokemonsPaginate();
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Pokemons = () => {
           <Grid2
             key={index}
             sx={{ borderRadius: 16, overflow: 'hidden' }}
-            size={{ xs: 2, sm: 2, md: 2 }}
+            size={{ xs: 3, sm: 4, md: 3 }}
           >
             <PokemonItem pokemon={pokemon} />
           </Grid2>
